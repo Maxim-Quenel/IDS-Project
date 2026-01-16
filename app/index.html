@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>NSL-KDD — Formulaire complet</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background:#fafafa; }
+    h1 { color: #0d6efd; }
+    form { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 1rem; }
+    label { font-weight: bold; display: block; margin-bottom: .25rem; }
+    input, select, textarea { width: 100%; padding: .4rem; border: 1px solid #ccc; border-radius: .25rem; }
+    button { padding: .6rem 1.2rem; margin-top:1rem; background: #0d6efd; color: white; border: none; border-radius: .25rem; cursor: pointer; }
+    button:hover { background: #0b5ed7; }
+    #result { margin-top: 2rem; padding: 1rem; border: 1px solid #ddd; border-radius: .5rem; background: #f9f9f9; }
+    .ok { color: green; font-weight: bold; }
+    .attack { color: red; font-weight: bold; }
+    .importBox { grid-column: 1 / -1; }
+  </style>
+</head>
+<body>
+  <h1>Test d'une connexion réseau (NSL-KDD)</h1>
+
+  <form id="predictForm">
+    <!-- Colonnes principales -->
+    <div><label>duration</label><input type="number" name="duration" value="0"></div>
+    <div>
+      <label>protocol_type</label>
+      <select name="protocol_type">
+        <option value="tcp" selected>tcp</option>
+        <option value="udp">udp</option>
+        <option value="icmp">icmp</option>
+      </select>
+    </div>
+    <div><label>service</label><input type="text" name="service" value="http"></div>
+    <div>
+      <label>flag</label>
+      <select name="flag">
+        <option value="SF" selected>SF</option>
+        <option value="S0">S0</option>
+        <option value="REJ">REJ</option>
+        <option value="RSTO">RSTO</option>
+      </select>
+    </div>
+    <div><label>src_bytes</label><input type="number" name="src_bytes" value="0"></div>
+    <div><label>dst_bytes</label><input type="number" name="dst_bytes" value="0"></div>
+    <div><label>land</label><input type="number" name="land" value="0"></div>
+    <div><label>wrong_fragment</label><input type="number" name="wrong_fragment" value="0"></div>
+    <div><label>urgent</label><input type="number" name="urgent" value="0"></div>
+    <div><label>hot</label><input type="number" name="hot" value="0"></div>
+    <div><label>num_failed_logins</label><input type="number" name="num_failed_logins" value="0"></div>
+    <div><label>logged_in</label><input type="number" name="logged_in" value="0"></div>
+    <div><label>num_compromised</label><input type="number" name="num_compromised" value="0"></div>
+    <div><label>root_shell</label><input type="number" name="root_shell" value="0"></div>
+    <div><label>su_attempted</label><input type="number" name="su_attempted" value="0"></div>
+    <div><label>num_root</label><input type="number" name="num_root" value="0"></div>
+    <div><label>num_file_creations</label><input type="number" name="num_file_creations" value="0"></div>
+    <div><label>num_shells</label><input type="number" name="num_shells" value="0"></div>
+    <div><label>num_access_files</label><input type="number" name="num_access_files" value="0"></div>
+    <div><label>num_outbound_cmds</label><input type="number" name="num_outbound_cmds" value="0"></div>
+    <div><label>is_host_login</label><input type="number" name="is_host_login" value="0"></div>
+    <div><label>is_guest_login</label><input type="number" name="is_guest_login" value="0"></div>
+    <div><label>count</label><input type="number" name="count" value="0"></div>
+    <div><label>srv_count</label><input type="number" name="srv_count" value="0"></div>
+    <div><label>serror_rate</label><input type="number" step="0.01" name="serror_rate" value="0.0"></div>
+    <div><label>srv_serror_rate</label><input type="number" step="0.01" name="srv_serror_rate" value="0.0"></div>
+    <div><label>rerror_rate</label><input type="number" step="0.01" name="rerror_rate" value="0.0"></div>
+    <div><label>srv_rerror_rate</label><input type="number" step="0.01" name="srv_rerror_rate" value="0.0"></div>
+    <div><label>same_srv_rate</label><input type="number" step="0.01" name="same_srv_rate" value="0.0"></div>
+    <div><label>diff_srv_rate</label><input type="number" step="0.01" name="diff_srv_rate" value="0.0"></div>
+    <div><label>srv_diff_host_rate</label><input type="number" step="0.01" name="srv_diff_host_rate" value="0.0"></div>
+    <div><label>dst_host_count</label><input type="number" name="dst_host_count" value="0"></div>
+    <div><label>dst_host_srv_count</label><input type="number" name="dst_host_srv_count" value="0"></div>
+    <div><label>dst_host_same_srv_rate</label><input type="number" step="0.01" name="dst_host_same_srv_rate" value="0.0"></div>
+    <div><label>dst_host_diff_srv_rate</label><input type="number" step="0.01" name="dst_host_diff_srv_rate" value="0.0"></div>
+    <div><label>dst_host_same_src_port_rate</label><input type="number" step="0.01" name="dst_host_same_src_port_rate" value="0.0"></div>
+    <div><label>dst_host_srv_diff_host_rate</label><input type="number" step="0.01" name="dst_host_srv_diff_host_rate" value="0.0"></div>
+    <div><label>dst_host_serror_rate</label><input type="number" step="0.01" name="dst_host_serror_rate" value="0.0"></div>
+    <div><label>dst_host_srv_serror_rate</label><input type="number" step="0.01" name="dst_host_srv_serror_rate" value="0.0"></div>
+    <div><label>dst_host_rerror_rate</label><input type="number" step="0.01" name="dst_host_rerror_rate" value="0.0"></div>
+    <div><label>dst_host_srv_rerror_rate</label><input type="number" step="0.01" name="dst_host_srv_rerror_rate" value="0.0"></div>
+    <div><label>label</label><input type="text" name="label" value=""></div>
+    <div><label>difficulty</label><input type="number" name="difficulty" value="0"></div>
+
+    <!-- Import direct -->
+    <div class="importBox">
+      <label for="rawRequest">Coller une requête (JSON ou curl) :</label>
+      <textarea id="rawRequest" rows="5" placeholder='Exemple : {"duration":0,"protocol_type":"tcp",...}'></textarea>
+      <button type="button" id="importBtn">Importer la requête</button>
+    </div>
+  </form>
+
+  <button id="sendBtn">Envoyer</button>
+
+  <div id="result">Résultat affiché ici...</div>
+
+  <script>
+    function extractJsonFromCurlOrText(txt) {
+    if (!txt) return null;
+
+    // Cherche -d 'xxx' ou -d "xxx"
+    const curlDataRegex = /-d\s+(?:'([^']*)'|"([^"]*)")/i;
+    const m = txt.match(curlDataRegex);
+
+    let candidate = null;
+    if (m) {
+        candidate = m[1] || m[2];
+    } else {
+        candidate = txt.trim();
+    }
+
+    if (!candidate) return null;
+
+    // 🔥 correction : enlever les échappements des \"
+    if (candidate.includes('\\"')) {
+        candidate = candidate.replace(/\\"/g, '"');
+    }
+
+    // Supprimer guillemets extérieurs si jamais il en reste
+    if ((candidate.startsWith("'") && candidate.endsWith("'")) ||
+        (candidate.startsWith('"') && candidate.endsWith('"'))) {
+        candidate = candidate.slice(1, -1);
+    }
+
+    try {
+        return JSON.parse(candidate);
+    } catch (e) {
+        console.error("Erreur parsing JSON:", e, candidate);
+        return null;
+    }
+    }
+
+
+    document.getElementById("importBtn").addEventListener("click", () => {
+      const raw = document.getElementById("rawRequest").value;
+      const parsed = extractJsonFromCurlOrText(raw);
+      if (!parsed) {
+        alert("Impossible d'extraire un JSON valide depuis le texte collé.");
+        return;
+      }
+      const form = document.getElementById("predictForm");
+      for (const key in parsed) {
+        const el = form.querySelector("[name='" + key + "']");
+        if (el) {
+          el.value = parsed[key];
+        }
+      }
+      alert("Requête importée !");
+    });
+
+    document.getElementById("sendBtn").addEventListener("click", async () => {
+      const form = document.getElementById("predictForm");
+      const data = {};
+      for (let el of form.elements) {
+        if (el.name) {
+          let val = el.value.replace(",", ".");
+          if (el.type === "number") {
+            data[el.name] = val === "" ? 0 : (val.includes('.') ? parseFloat(val) : parseInt(val));
+          } else {
+            data[el.name] = val;
+          }
+        }
+      }
+
+      try {
+        const res = await fetch("/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (json.predictions && json.predictions.length > 0) {
+          document.getElementById("result").innerHTML =
+            "<strong>Réponse :</strong> " +
+            (json.predictions[0] === "normal"
+              ? "<span class='ok'>Normal</span>"
+              : "<span class='attack'>Attack</span>");
+        } else {
+          document.getElementById("result").innerHTML =
+            "<span style='color:red'>Erreur API :</span> " + JSON.stringify(json);
+        }
+      } catch (e) {
+        document.getElementById("result").innerHTML =
+          "<span style='color:red'>Erreur réseau :</span> " + e.message;
+      }
+    });
+  </script>
+</body>
+</html>
